@@ -1,0 +1,65 @@
+﻿@using ZergDraftApp.Models
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ZergDraftApp</title>
+	<link href="~/Content/bootstrap-theme.css.map" rel="stylesheet" />
+	<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+	<link href="~/Content/DefaultStyleSheet.css" rel="stylesheet" />
+</head>
+<body>
+<header class="main">
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">ZergTV</a>
+				
+				<span>You are @ZergDraftApp.Models.UserProvider.Role.ToString()</span>
+			</div>
+
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li class="active">@Html.ActionLink("Расписание", "Index", "Home")</li>
+					<li>@Html.ActionLink("Отзывы", "Feedbacks", "Home")</li>
+					<li>@Html.ActionLink("Контакты", "Contacts", "Home")</li>
+				</ul>
+			
+				<ul class="loginForm">
+					@if (UserProvider.Role == UserRole.None)
+					{
+						<li class="btn btn-default">@Html.ActionLink("Login as User", "SetAsUser", "User")</li>
+						<li class="btn btn-default">@Html.ActionLink("Login as Admin", "SetAsAdmin", "User")</li>
+					}
+					else
+					{
+						<li class="btn btn-default">@Html.ActionLink("Dislogin", "Dislogin", "User")</li>
+					}
+				</ul>
+			</div>
+		</div>
+	</nav>
+</header>
+
+<div class="col-lg-offset-1 col-lg-10">
+	@RenderBody()
+</div>
+	
+	<script src="~/Scripts/jquery-2.1.1.min.js"></script>
+	<script src="~/Scripts/bootstrap.min.js"></script>
+	<script src="~/Scripts/jquery.dateFormat-1.0.js"></script>
+	@RenderSection("scripts", false)
+</body>
+</html>

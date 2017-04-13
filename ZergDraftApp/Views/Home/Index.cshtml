@@ -1,0 +1,41 @@
+﻿@using ZergDraftApp.Controllers
+@model ZergDraftApp.Controllers.Schedule
+
+@{
+	ViewBag.Title = "Index";
+	Layout = "~/Views/Layouts/DefaultLayout.cshtml";
+}
+
+<div class="schedule">
+	<div class="goToDateButton">
+		<button>Contact me</button>
+		<button>Go to date...</button>
+	</div>
+
+	<ul class="col-xs-1 times">
+		@for (int i = 0; i < 24; i++)
+		{
+			<li class="time">@(i * 1):00</li>
+		}
+	</ul>
+</div>
+
+@section scripts
+{
+	<script type="text/javascript">
+		var MvcModel = JSON.parse('@Html.Raw(Json.Encode(Model))');
+
+		@{
+			IDictionary<string, string> d = Enum.GetValues(typeof(ScheduleDayBlockType))
+											.Cast<object>()
+											.ToDictionary(e => ((int) e).ToString(),
+												e => e.ToString().ToLowerInvariant());
+
+		}
+
+		$("body").css("overflow", "hidden");
+		var ScheduleDayBlockTypes = JSON.parse('@Html.Raw(Json.Encode(d))');
+	</script>
+
+	<script src="~/Scripts/schedule.js"></script>
+}

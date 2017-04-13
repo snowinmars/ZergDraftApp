@@ -1,0 +1,63 @@
+﻿@using ZergDraftApp.Models
+
+@{
+    ViewBag.Title = "Feedbacks";
+    Layout = "~/Views/Layouts/DefaultLayout.cshtml";
+}
+
+@if (UserProvider.Role == UserRole.User)
+{
+	<button>Add feedback</button>
+}
+
+<div class="feedback">
+	<h4>Player#0001</h4>
+	
+	@if (UserProvider.Role == UserRole.Admin)
+	{
+		<div>
+			<span>Remove</span>
+			<span>Edit</span>
+		</div>
+	}
+
+	<div class="feedback_text">@string.Join(" ", @TextGeneratorProvider.TextGenerator.GetWords(70))</div>
+	<div class="feedback_date">@DateTime.Now.AddTicks(-(new Random().Next(10000, 1000000)))</div>
+</div>
+
+
+<div class="feedback">
+	<h4>Player#0002</h4>
+	
+	@if (UserProvider.Role == UserRole.Admin)
+	{
+		<div>
+			<span>Remove</span>
+			<span>Edit</span>
+		</div>
+	}
+	<div class="feedback_text">@string.Join(" ", @TextGeneratorProvider.TextGenerator.GetWords(70))</div>
+	<div class="feedback_date">@DateTime.Now.AddTicks(-(new Random().Next(10000, 1000000)))</div>
+</div>
+
+
+<div class="feedback">
+	<h4>Player#0003</h4>
+	@if (UserProvider.Role == UserRole.Admin)
+	{
+		<div>
+			<span>Remove</span>
+			<span>Edit</span>
+		</div>
+	}
+	<div class="feedback_text">@string.Join(" ", @TextGeneratorProvider.TextGenerator.GetWords(70))</div>
+	<div class="feedback_date">@DateTime.Now.AddTicks(-(new Random().Next(10000, 1000000)))</div>
+</div>
+
+
+<div class="feedback">
+	<h4>Player#0004</h4>
+	<div class="feedback_text">@string.Join(" ", @TextGeneratorProvider.TextGenerator.GetWords(70))</div>
+	<div class="feedback_date">@DateTime.Now.AddTicks(-(new Random().Next(10000, 1000000)))</div>
+</div>
+
